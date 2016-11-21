@@ -2,9 +2,23 @@
 <title>Chatroom</title>
 <meta charset="utf-8">
 
+<style type="text/css">
+    .num-online {
+        color: blue;
+    }
+    
+    .notifications {
+        color: green;
+    }
+</style>
+
 <!-- JS -->
 <script src="//code.jquery.com/jquery-2.1.0.js"></script>
-<script src="main.js"></script> 
+<script src="/socket.io/socket.io.js"></script>
+<script src="main.js"></script>
 
+Users online: <span class="num-online"></span>
+<br />
+<div class="notifications"></div>
 <input type="text">
 <div id="messages"></div>
