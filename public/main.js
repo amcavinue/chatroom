@@ -1,13 +1,24 @@
 $(document).ready(function() {
     var socket = io();
-    var input = $('input');
+    var input = $('.current-message');
     var messages = $('#messages');
     var notifications = $('.notifications');
     var usersOnline = $('.num-online');
+    var displayNickname = $('.nickname-display');
+    var nicknameForm = $('#nickname-form');
+    var nickname = '';
 
     var addMessage = function(message) {
         messages.append('<div>' + message + '</div>');
     };
+    
+    nicknameForm.submit(function(e) {
+       e.preventDefault();
+       nickname = $('#name').val();
+       socket.emit('nickname', nickname);
+       displayNickname.html(nickname);
+       nicknameForm.hide();
+    });
 
     input.on('keydown', function(event) {
         if (event.keyCode != 13) {
@@ -15,7 +26,6 @@ $(document).ready(function() {
         }
 
         var message = input.val();
-        addMessage(message);
         socket.emit('message', message);
         input.val('');
     });

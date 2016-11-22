@@ -15,9 +15,14 @@ io.on('connection', function (socket) {
     
     usersOnline++;
     
+    var nickname = '';
+    socket.on('nickname', function(name) {
+        nickname = name;
+    });
+    
     socket.on('message', function(message) {
-        console.log('Received message:', message);
-        socket.broadcast.emit('message', message);
+        socket.emit('message', nickname + ': ' + message);
+        socket.broadcast.emit('message', nickname + ': ' + message);
     });
     
     socket.on('disconnect', function () {

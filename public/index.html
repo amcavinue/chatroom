@@ -10,6 +10,10 @@
     .notifications {
         color: green;
     }
+    
+    .nickname-display {
+        color: teal;
+    }
 </style>
 
 <!-- JS -->
@@ -17,8 +21,22 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="main.js"></script>
 
+<form id="nickname-form" action="" method="">
+    <fieldset>
+      <legend>Choose a nickname:</legend>
+      <div>
+          <input type="text" id="name" name="user_name" value="John Doe" />
+      </div>
+    </fieldset>
+
+    <input type="submit" value="Submit" name="submit" />
+</form>
+<br />
+
 Users online: <span class="num-online"></span>
 <br />
 <div class="notifications"></div>
-<input type="text">
+Your nickname: <span class="nickname-display"></span>
+<br />
+<input class="current-message" type="text">
 <div id="messages"></div>
